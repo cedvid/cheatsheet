@@ -27,6 +27,20 @@ vim_tips=$(cat <<-EOF
 EOF
 )
 
+gnome_tips=$(cat <<-EOF
+    Useful $1:
+    Super + \`              Switch between windows of the same app
+    Shift + Super + Arrow   Move current window to another monitor
+    Super + V               Show notifications
+EOF
+)
+
+cli_tips=$(cat <<-EOF
+    Useful $1:
+    readlink -f file        Get whole path of a file
+EOF
+)
+
 cz_tips=$(cat <<-EOF
     fn+2    ě
     fn+3    š
@@ -56,8 +70,14 @@ case "$1" in
     cz)
         output="$cz_tips"
         ;;
+    gnome)
+        output="$gnome_tips"
+        ;;
+    cli)
+        output="$cli_tips"
+        ;;
     *)
-        echo "Usage: useful {git|vim|cz} [keyword]"
+        echo "Usage: useful {cli|git|vim|gnome|cz} [keyword]"
         exit 1
         ;;
 esac
@@ -67,5 +87,8 @@ if [ -n "$2" ]; then
 else
     echo "$output"
 fi
+
+exit 0
+
 
 exit 0
