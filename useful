@@ -60,6 +60,11 @@ cz_tips=$(cat <<-EOF
 EOF
 )
 
+openqa_tips=$(cat <<-EOF
+    openqa-cli api --pretty jobs/\$JOB_NBR      Show mentioned job
+EOF
+)
+
 case "$1" in
     git)
         output="$git_tips"
@@ -76,6 +81,9 @@ case "$1" in
     cli)
         output="$cli_tips"
         ;;
+    openqa)
+        output="$openqa_tips"
+        ;;
     *)
         echo "Usage: useful {cli|git|vim|gnome|cz} [keyword]"
         exit 1
@@ -85,7 +93,7 @@ esac
 if [ -n "$2" ]; then
     echo "$output" | grep -i "$2"
 else
-    echo "$output"
+    echo -e "${1^^}:\n\n$output"
 fi
 
 exit 0
